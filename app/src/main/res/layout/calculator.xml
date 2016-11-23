@@ -40,7 +40,7 @@
 
             <TextView
                 style="@style/FunctionButtonStyle"
-                android:text="÷"/>
+                android:text="@string/symbol_divide"/>
         </LinearLayout>
 
         <LinearLayout
@@ -60,7 +60,7 @@
 
             <TextView
                 style="@style/FunctionButtonStyle"
-                android:text="×"/>
+                android:text="@string/symbol_multiply"/>
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +80,7 @@
 
             <TextView
                 style="@style/FunctionButtonStyle"
-                android:text="-"/>
+                android:text="@string/symbol_subtract"/>
         </LinearLayout>
 
         <LinearLayout
@@ -88,7 +88,7 @@
 
             <TextView
                 style="@style/ButtonStyle"
-                android:text=""/>
+                android:text="@string/symbol_clear"/>
 
             <TextView
                 style="@style/ButtonStyle"
@@ -97,11 +97,11 @@
             <TextView
                 style="@style/ButtonStyle"
                 android:background="@color/light_grey"
-                android:text="="/>
+                android:text="@string/symbol_equals"/>
 
             <TextView
                 style="@style/FunctionButtonStyle"
-                android:text="+"/>
+                android:text="@string/symbol_addition"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
