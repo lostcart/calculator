@@ -1,10 +1,10 @@
 package com.lost.calculator.utils;
 
-public class Calculator {
+public class CalculatorHelper {
     private CalculatorSymbols calculatorSymbols;
     private String currentEquation = "";
 
-    public Calculator(CalculatorSymbols calculatorSymbols) {
+    public CalculatorHelper(CalculatorSymbols calculatorSymbols) {
         this.calculatorSymbols = calculatorSymbols;
     }
 
@@ -33,7 +33,20 @@ public class Calculator {
     }
 
     private void computeCurrentEquation() {
-        currentEquation = "YES!";
+        if (currentEquation.length() > 0) {
+            String tempEquation = currentEquation;
+            for (CalculatorSymbols.Symbol symbol : CalculatorSymbols.Symbol.values()) {
+                String valueToReplace = calculatorSymbols.getValue(symbol);
+                if (valueToReplace != null) {
+                    tempEquation = tempEquation.replace(valueToReplace, symbol.toString());
+                }
+            }
+            currentEquation = Double.toString(CalculatorUtils.evaluate(tempEquation));
+            // Remove trailing .0
+            if (currentEquation.endsWith(".0")) {
+                currentEquation = currentEquation.substring(0, currentEquation.length() - 2);
+            }
+        }
     }
 
     private void addSymbol(CalculatorSymbols.Symbol symbol) {

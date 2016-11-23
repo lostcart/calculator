@@ -13,13 +13,23 @@ public class CalculatorSymbols {
     private String equals;
 
     public enum Symbol {
-        DIVIDE,
-        MULTIPLY,
-        ADDITION,
-        SUBTRACTION,
-        CLEAR,
-        EQUALS,
-        NONE
+        DIVIDE("/"),
+        MULTIPLY("*"),
+        ADDITION("+"),
+        SUBTRACTION("-"),
+        CLEAR("CLR"),
+        EQUALS("="),
+        NONE("");
+
+        private final String name;
+
+        Symbol(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            return name;
+        }
     }
 
     public CalculatorSymbols(Context context) {
