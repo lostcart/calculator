@@ -1,22 +1,20 @@
 package com.lost.calculator.utils;
 
 public class CalculatorHelper {
-    private CalculatorSymbols calculatorSymbols;
     private String currentEquation = "";
 
-    public CalculatorHelper(CalculatorSymbols calculatorSymbols) {
-        this.calculatorSymbols = calculatorSymbols;
+    public CalculatorHelper() {
     }
 
     public String addValue(String value) {
         if (value != null) {
-            CalculatorSymbols.Symbol symbol = calculatorSymbols.getSymbol(value);
-            switch (symbol) {
+            CalculatorSymbol calculatorSymbol = CalculatorSymbol.getSymbol(value);
+            switch (calculatorSymbol) {
                 case DIVIDE:
                 case MULTIPLY:
                 case ADDITION:
                 case SUBTRACTION:
-                    addSymbol(symbol);
+                    addSymbol(calculatorSymbol);
                     break;
                 case CLEAR:
                     currentEquation = "";
@@ -35,10 +33,10 @@ public class CalculatorHelper {
     private void computeCurrentEquation() {
         if (currentEquation.length() > 0) {
             String tempEquation = currentEquation;
-            for (CalculatorSymbols.Symbol symbol : CalculatorSymbols.Symbol.values()) {
-                String valueToReplace = calculatorSymbols.getValue(symbol);
+            for (CalculatorSymbol calculatorSymbol : CalculatorSymbol.values()) {
+                String valueToReplace = calculatorSymbol.getVisual();
                 if (valueToReplace != null) {
-                    tempEquation = tempEquation.replace(valueToReplace, symbol.toString());
+                    tempEquation = tempEquation.replace(valueToReplace, calculatorSymbol.getMaths());
                 }
             }
             currentEquation = Double.toString(CalculatorUtils.evaluate(tempEquation));
@@ -49,11 +47,11 @@ public class CalculatorHelper {
         }
     }
 
-    private void addSymbol(CalculatorSymbols.Symbol symbol) {
+    private void addSymbol(CalculatorSymbol calculatorSymbol) {
         if (currentEquation.length() > 0) {
-            if (calculatorSymbols.getSymbol(currentEquation.substring(currentEquation.length() - 1)) ==
-                    CalculatorSymbols.Symbol.NONE) {
-                currentEquation += calculatorSymbols.getValue(symbol);
+            if (CalculatorSymbol.getSymbol(currentEquation.substring(currentEquation.length() - 1)) ==
+                    CalculatorSymbol.NONE) {
+                currentEquation += calculatorSymbol.getVisual();
             }
         }
     }
