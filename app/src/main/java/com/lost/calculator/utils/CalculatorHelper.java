@@ -1,5 +1,8 @@
 package com.lost.calculator.utils;
 
+/**
+ * Handles what to do when different calculator functions are used
+ */
 public class CalculatorHelper {
     private String currentEquation = "";
 

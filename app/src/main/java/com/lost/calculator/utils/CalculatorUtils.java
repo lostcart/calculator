@@ -1,7 +1,19 @@
 package com.lost.calculator.utils;
 
+/**
+ * Utils to help calculating equations
+ */
 public class CalculatorUtils {
 
+    /**
+     * Takes in an equation in the form of a string and returns the calculated response
+     * Will throw an exception if you pass in something it can't handle
+     * <p>
+     * http://stackoverflow.com/a/26227947
+     *
+     * @param str
+     * @return
+     */
     public static double evaluate(final String str) {
         return new Object() {
             int pos = -1, ch;

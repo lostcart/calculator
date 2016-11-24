@@ -8,8 +8,10 @@ import android.widget.TextView;
 import com.lost.calculator.R;
 import com.lost.calculator.utils.CalculatorHelper;
 
+/**
+ * Handles displaying the calculator and updates the result when a calculation is made
+ */
 public class CalculatorActivity extends AppCompatActivity implements CalculatorPresenter.View {
-
     private CalculatorPresenter calculatorPresenter;
 
     private TextView resultTextView;
