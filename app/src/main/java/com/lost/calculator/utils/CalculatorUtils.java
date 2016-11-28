@@ -14,7 +14,7 @@ public class CalculatorUtils {
      * @param str
      * @return
      */
-    public static double evaluate(final String str) {
+    public static double evaluate(final String str) throws RuntimeException {
         return new Object() {
             int pos = -1, ch;
 

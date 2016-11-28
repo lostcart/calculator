@@ -5,12 +5,17 @@ package com.lost.calculator.utils;
  */
 public class CalculatorHelper {
     private String currentEquation = "";
+    public static final String BAD_RESPONSE = "N/A";
 
     public CalculatorHelper() {
     }
 
     public String addValue(String value) {
         if (value != null) {
+            // Reset the equation if last response was bad
+            if (currentEquation.equals(BAD_RESPONSE)) {
+                currentEquation = "";
+            }
             CalculatorSymbol calculatorSymbol = CalculatorSymbol.getSymbol(value);
             switch (calculatorSymbol) {
                 case DIVIDE:
@@ -42,10 +47,19 @@ public class CalculatorHelper {
                     tempEquation = tempEquation.replace(valueToReplace, calculatorSymbol.getMaths());
                 }
             }
-            currentEquation = Double.toString(CalculatorUtils.evaluate(tempEquation));
-            // Remove trailing .0
-            if (currentEquation.endsWith(".0")) {
-                currentEquation = currentEquation.substring(0, currentEquation.length() - 2);
+            double result;
+            try {
+                result = CalculatorUtils.evaluate(tempEquation);
+                currentEquation = Double.toString(result);
+            } catch (RuntimeException runTimeException) {
+                currentEquation = BAD_RESPONSE;
+            }
+
+            if (!currentEquation.equals(BAD_RESPONSE)) {
+                // Remove trailing .0
+                if (currentEquation.endsWith(".0")) {
+                    currentEquation = currentEquation.substring(0, currentEquation.length() - 2);
+                }
             }
         }
     }
